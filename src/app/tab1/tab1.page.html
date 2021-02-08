@@ -1,0 +1,75 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button>
+        <ion-icon name="menu-outline" slot ="icon-only"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+
+    <ion-title>
+      WOO SHOP
+    </ion-title>
+
+    <ion-buttons slot="end">
+      <ion-button>
+        <ion-icon name="search-outline" slot ="icon-only"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+
+    <ion-buttons class="cart" routerLink="/tabs/tab3"  slot="end">
+      <ion-button>
+        <ion-icon name="cart-outline" slot ="icon-only"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+
+    <ion-badge color="danger" slot="end"> 0 </ion-badge>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen] = "true" style ="position : relative;">
+  <ion-toolbar  style ="position : fixed; top : 112px;">
+    <ion-buttons slot = "primary">
+
+      <ion-button color="dark" expand="block" fill="clear">
+        <ion-icon name = "funnel-outline" slot ="end"> </ion-icon>
+        Sort
+      </ion-button>
+
+      <ion-button color="dark" expand="block" fill="clear">
+        <ion-icon name = "filter-outline" slot ="end"> </ion-icon>
+        Filter
+      </ion-button>
+
+    </ion-buttons>
+
+
+  </ion-toolbar>
+
+
+  <ion-slides [options] ="sliderOptions"  class="ion-padding" pager style="margin-top: 4.2rem;">
+    <ion-slide *ngFor="let slide of sliderImages">
+      <img [src]="slide+'.jpg'" alt="none available">
+    </ion-slide>
+  </ion-slides>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-list>
+          <ion-item *ngFor ="let product of displayedList" class="item-entry" detail routerLink="/tabs/tab1/prod-detail/{{product.id}}">
+            <ion-thumbnail>
+              <ion-img [src] ="product.images[0].src" alt="{{product.name}}"> </ion-img>>
+            </ion-thumbnail>
+            <ion-label>
+              <h3 class ="item-name">{{product.name}}</h3>
+              <ion-text>
+                <p>{{product.price | currency: "INR"}}</p>
+              </ion-text>
+            </ion-label>
+          </ion-item>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+</ion-content>
